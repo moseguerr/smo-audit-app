@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.py[cod]
+
+# Django
+db.sqlite3
+*.log
+media/
+
+# Environment
+.env
+
+# Conda
+# (if you want to *keep* environment.yml in git, don't ignore it)
+# *.yml
+
+# VSCode / IDE
+.vscode/
+.idea/
+
