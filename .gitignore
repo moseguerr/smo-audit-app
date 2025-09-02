@@ -12,7 +12,7 @@ media/
 
 # Conda
 # (if you want to *keep* environment.yml in git, don't ignore it)
-# *.yml
+*.yml
 
 # VSCode / IDE
 .vscode/
