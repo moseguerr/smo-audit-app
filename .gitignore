@@ -10,11 +10,15 @@ media/
 # Environment
 .env
 
-# Conda
-# (if you want to *keep* environment.yml in git, don't ignore it)
-*.yml
 
 # VSCode / IDE
 .vscode/
 .idea/
 
+#OS
+.DS_Store
+Thumbs.db
+
+#Static files
+staticfiles/
+EOF

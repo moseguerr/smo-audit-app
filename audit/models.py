@@ -24,12 +24,14 @@ class Employer(models.Model):
     display_name = models.CharField(max_length=255, unique=True)
     normalized_name = models.CharField(max_length=255, editable=False, unique=True)
 
+    # RA logging fields
+    employer_location = models.CharField(max_length=255, blank=True)
+    number_employees = models.PositiveIntegerField(blank=True, null=True)
+    industry = models.CharField(max_length=255, blank=True)
+
     def save(self, *args, **kwargs):
         self.normalized_name = (
-            self.display_name.lower()
-            .replace(".", "")
-            .replace(",", "")
-            .strip()
+            self.display_name.lower().replace(".", "").replace(",", "").strip()
         )
         super().save(*args, **kwargs)
 
@@ -37,16 +39,18 @@ class Employer(models.Model):
         return self.display_name
 
 
+
 class PairApplication(models.Model):
     pair = models.ForeignKey(Pair, on_delete=models.PROTECT, related_name="applications")
     employer = models.ForeignKey(Employer, on_delete=models.PROTECT, related_name="applications")
 
-    # Job opening fields directly on PairApplication
-    occupation = models.CharField(max_length=120)  # auto-filled from Pair
-    job_title = models.CharField(max_length=255)
-    job_text = models.TextField()  # full job description
+    # occupation visible but controlled in admin
+    occupation = models.CharField(max_length=120, editable=False)
 
+    job_title = models.CharField(max_length=255)
+    job_text = models.TextField()
     job_location = models.CharField(max_length=255, blank=True)
+
     WORK_MODE_CHOICES = [
         ("remote", "Remote"),
         ("hybrid", "Hybrid"),
@@ -62,19 +66,24 @@ class PairApplication(models.Model):
         ("other", "Other"),
     ]
     job_board = models.CharField(max_length=50, choices=JOB_BOARD_CHOICES, default="other")
-    job_board_other = models.CharField(
-        max_length=255,
-        blank=True,
-        help_text="If 'Other' selected, specify the job board name",
-    )
+    job_board_other = models.CharField(max_length=255, blank=True)
+    
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
 
     class Meta:
         constraints = [
-            models.UniqueConstraint(
-                fields=["pair", "employer", "job_link"],
-                name="unique_pair_application"
-            )
+            models.UniqueConstraint(fields=["occupation", "employer"], name="unique_occupation_employer_application")
         ]
 
+    def save(self, *args, **kwargs):
+        if self.pair:
+            occ = self.pair.occupation.strip()
+            # normalize → first letter uppercase, rest lowercase
+            self.occupation = occ.capitalize()
+        super().save(*args, **kwargs)
+
     def __str__(self):
-        return f"{self.pair.pair_id} → {self.job_title} @ {self.employer}"
+        return f"{self.pair.pair_id} → {self.occupation} | {self.job_title} @ {self.employer}"
+
