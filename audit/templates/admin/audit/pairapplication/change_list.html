@@ -1,0 +1,100 @@
+{% extends "admin/base_site.html" %}
+{% load i18n admin_urls static admin_modify %}
+
+{% block title %}{{ title }} | {{ site_title|default:_('Django site admin') }}{% endblock %}
+
+{% block breadcrumbs %}
+<div class="breadcrumbs">
+<a href="{% url 'admin:index' %}">{% trans 'Home' %}</a>
+&rsaquo; <a href="{% url 'admin:app_list' app_label=opts.app_label %}">{{ opts.app_label|capfirst|escape }}</a>
+&rsaquo; {{ title }}
+</div>
+{% endblock %}
+
+{% block content %}
+<div id="content-main">
+    <div class="module aligned">
+        <h1>{{ title }}</h1>
+
+        <div style="margin-bottom: 20px; padding: 10px; background: #f0f8ff; border: 1px solid #ddd; border-radius: 4px;">
+            <p><strong>Note:</strong> Job applications are created from pair details pages. Use "Generate New Resume Pair" or view existing pairs to add applications.</p>
+        </div>
+
+        <!-- Work in Progress Applications -->
+        <div class="module aligned" style="margin-bottom: 30px;">
+            <h2 style="background: #f0f8f0; padding: 10px; margin: 0; border-bottom: 1px solid #ddd;">
+                📝 Work in Progress ({{ draft_applications.count }})
+            </h2>
+            {% if draft_applications %}
+                <table style="width: 100%; border-collapse: collapse;">
+                    <thead>
+                        <tr style="background: #f8f9fa;">
+                            <th style="padding: 8px; border: 1px solid #ddd;">Pair</th>
+                            <th style="padding: 8px; border: 1px solid #ddd;">Job Title</th>
+                            <th style="padding: 8px; border: 1px solid #ddd;">Employer</th>
+                            <th style="padding: 8px; border: 1px solid #ddd;">Last Updated</th>
+                            <th style="padding: 8px; border: 1px solid #ddd;">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for app in draft_applications %}
+                        <tr>
+                            <td style="padding: 8px; border: 1px solid #ddd;">{{ app.pair.pair_id }}</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">{{ app.job_title }}</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">{{ app.employer.display_name }}</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">{{ app.updated_at|date:"M d, Y H:i" }}</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">
+                                <a href="{% url 'admin:audit_pairapplication_change' app.pk %}" class="button">Edit</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <p style="padding: 15px; color: #666;">No applications in progress.</p>
+            {% endif %}
+        </div>
+
+        <!-- Submitted Applications -->
+        <div class="module aligned">
+            <h2 style="background: #f0f0f8; padding: 10px; margin: 0; border-bottom: 1px solid #ddd;">
+                ✅ Submitted ({{ submitted_applications.count }})
+            </h2>
+            {% if submitted_applications %}
+                <table style="width: 100%; border-collapse: collapse;">
+                    <thead>
+                        <tr style="background: #f8f9fa;">
+                            <th style="padding: 8px; border: 1px solid #ddd;">Pair</th>
+                            <th style="padding: 8px; border: 1px solid #ddd;">Job Title</th>
+                            <th style="padding: 8px; border: 1px solid #ddd;">Employer</th>
+                            <th style="padding: 8px; border: 1px solid #ddd;">Submitted</th>
+                            <th style="padding: 8px; border: 1px solid #ddd;">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for app in submitted_applications %}
+                        <tr>
+                            <td style="padding: 8px; border: 1px solid #ddd;">{{ app.pair.pair_id }}</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">{{ app.job_title }}</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">{{ app.employer.display_name }}</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">{{ app.submitted_at|date:"M d, Y H:i" }}</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">
+                                <a href="{% url 'admin:audit_pairapplication_change' app.pk %}" class="button">View</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <p style="padding: 15px; color: #666;">No submitted applications.</p>
+            {% endif %}
+        </div>
+
+        <div style="margin-top: 20px;">
+            <a href="{% url 'admin:audit_pairapplication_changelist' %}?status=draft" class="button">View Draft Filter</a>
+            <a href="{% url 'admin:audit_pairapplication_changelist' %}?status=submitted" class="button">View Submitted Filter</a>
+            <a href="{% url 'admin:audit_pairapplication_changelist' %}" class="button">View All</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

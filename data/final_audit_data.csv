@@ -1,0 +1,19 @@
+pair_id,resume_idx,template_name,first_name,first_name_id,last_name,last_name_id,full_name,race_signal,gender_signal,phone,phone_id,address,address_id,email,current_employer_type,current_employer_id,current_employer_name,current_job_title,current_job_id,current_start,current_end,current_bullets,previous_employer_type,previous_employer_id,previous_employer_name,previous_job_title,previous_job_id,previous_start,previous_end,previous_bullets,college_activity_type,college_activity_description,college_name,college_id,college_major,college_major_id,college_gpa,grad_gap,college_start,college_end,skills,summary,good_fit_occupations,occupation,job_title,job_text,job_location,work_mode,job_link,job_board,job_board_other,days_open,application_occupation,application_created,application_updated,applied_employer_name,applied_employer_location,applied_employer_industry,applied_employer_employees,applied_employer_glassdoor_score,applied_employer_diversity_score,applied_employer_openings,applied_employer_mission
+j072zr,1,template_4.txt,Sarah,fn:White:Female:8,Meyer,ln:White:1,Sarah Meyer,White,Female,202-555-0148,ph:0,"456 Oak Avenue, Washington, DC 20001",addr2,sarahmeyer1@outlook.com,SMO,SMO4,Health Equity Network,Job Title 1,CUR_1,Jan-22,Present,Bullet 1 • Bullet 2 • Bullet 3,SMO,SMO1,Climate Action Now,Job Title B,PREV_2,May-19,Dec-21,Bullet 1 • Bullet 2 • Bullet 3,neutral,"Captain, Intramural Soccer Team",Western College,c2,Communications,m2,3.2,6,2015,2019,Excel; Payroll systems; Data analysis,Detail-oriented analyst with experience managing payroll and financial data.,"Senior Project Coordinator: Experienced in supporting large projects and ensuring timely deliverables.
+
+Product Implementation Manager: Skilled in overseeing product rollouts and managing cross-departmental tasks.
+
+Business Operations Manager: Well-suited for roles aligning project outcomes with business strategies.
+
+Change Management Specialist: Adept at guiding teams through organizational transitions.
+
+Client Services Project Manager: Effective in managing client-facing projects and ensuring satisfaction",project manager,Marketing,ABC,,in_person,,indeed,,1,Project manager,2025-09-04 14:35:17,2025-09-04 14:35:17,Chance,Chicago,Energy,12,1.3,4.0,2,abc
+j072zr,2,template_2.txt,Susan,fn:White:Female:16,Becker,ln:White:0,Susan Becker,White,Female,312-555-0193,ph:1,"123 Main Street, Chicago, IL 60601",addr1,susan_becker@msn.com,For Profit,FP3,Silverline Analytics,Job Title 2,CUR_2,Jan-22,Present,Bullet 1 • Bullet 2 • Bullet 3,For Profit,FP2,Northstar Logistics,Job Title A,PREV_1,May-19,Dec-21,Bullet 1 • Bullet 2 • Bullet 3,neutral,"Volunteer, Campus Tutoring Program",Northeastern Institute of Technology,c3,Business Administration,m1,3.4,6,2015,2019,Excel; Payroll systems; Data analysis,Results-driven professional with strong expertise in Excel and business systems.,"Senior Project Coordinator: Experienced in supporting large projects and ensuring timely deliverables.
+
+Product Implementation Manager: Skilled in overseeing product rollouts and managing cross-departmental tasks.
+
+Business Operations Manager: Well-suited for roles aligning project outcomes with business strategies.
+
+Change Management Specialist: Adept at guiding teams through organizational transitions.
+
+Client Services Project Manager: Effective in managing client-facing projects and ensuring satisfaction.",project manager,Marketing,ABC,,in_person,,indeed,,1,Project manager,2025-09-04 14:35:17,2025-09-04 14:35:17,Chance,Chicago,Energy,12,1.3,4.0,2,abc

@@ -1,0 +1,294 @@
+{% extends "admin/base_site.html" %}
+{% load i18n admin_urls static admin_modify %}
+
+{% block title %}{{ title }} | {{ site_title|default:_('Django site admin') }}{% endblock %}
+
+{% block extrahead %}{{ block.super }}
+<script type="text/javascript" src="{% url 'admin:jsi18n' %}"></script>
+{{ media }}
+{% endblock %}
+
+{% block extrastyle %}{{ block.super }}
+<link rel="stylesheet" type="text/css" href="{% static "admin/css/forms.css" %}">
+{% endblock %}
+
+{% block breadcrumbs %}
+<div class="breadcrumbs">
+<a href="{% url 'admin:index' %}">{% trans 'Home' %}</a>
+&rsaquo; <a href="{% url 'admin:app_list' app_label=opts.app_label %}">{{ opts.app_label|capfirst|escape }}</a>
+&rsaquo; <a href="{% url 'admin:audit_pair_changelist' %}">Pairs</a>
+&rsaquo; {{ title }}
+</div>
+{% endblock %}
+
+{% block content %}
+<div id="content-main">
+    <div class="module aligned">
+        <h2>{{ title }}</h2>
+
+        <form method="post" id="pair-generation-form" novalidate>
+            {% csrf_token %}
+
+            <div class="form-row">
+                <div>
+                    <label for="{{ form.location.id_for_label }}" class="required">{{ form.location.label }}:</label>
+                    {{ form.location }}
+                    {% if form.location.help_text %}
+                        <div class="help">{{ form.location.help_text }}</div>
+                    {% endif %}
+                    {% if form.location.errors %}
+                        <ul class="errorlist">
+                            {% for error in form.location.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div>
+                    <label for="{{ form.occupation.id_for_label }}" class="required">{{ form.occupation.label }}:</label>
+                    {{ form.occupation }}
+                    {% if form.occupation.help_text %}
+                        <div class="help">{{ form.occupation.help_text }}</div>
+                    {% endif %}
+                    {% if form.occupation.errors %}
+                        <ul class="errorlist">
+                            {% for error in form.occupation.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div>
+                    <label for="{{ form.archetype.id_for_label }}" class="required">{{ form.archetype.label }}:</label>
+                    {{ form.archetype }}
+                    {% if form.archetype.help_text %}
+                        <div class="help">{{ form.archetype.help_text }}</div>
+                    {% endif %}
+                    {% if form.archetype.errors %}
+                        <ul class="errorlist">
+                            {% for error in form.archetype.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div>
+                    <label for="{{ form.sublocation.id_for_label }}">{{ form.sublocation.label }}:</label>
+                    {{ form.sublocation }}
+                    {% if form.sublocation.help_text %}
+                        <div class="help">{{ form.sublocation.help_text }}</div>
+                    {% endif %}
+                    {% if form.sublocation.errors %}
+                        <ul class="errorlist">
+                            {% for error in form.sublocation.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="submit-row">
+                <input type="submit" value="Generate Pair" class="default" name="_save">
+                {% if show_pairs_list_button %}
+                    <a href="{% url 'admin:audit_pair_list' %}" class="button">View Previous Pairs</a>
+                {% endif %}
+            </div>
+        </form>
+
+        {% if result %}
+        <div class="module aligned" style="margin-top: 20px;">
+            <h2>Generated Pair Results</h2>
+
+            <!-- Pair Information (shared) -->
+            <div style="background: #f8f8f8; padding: 15px; border: 1px solid #ddd; border-radius: 4px; margin-bottom: 15px;">
+                <p><strong>Pair ID:</strong> {{ result.pair_id }}</p>
+                <p><strong>Occupation:</strong> {{ result.occupation }}</p>
+                <p><strong>Archetype:</strong> {{ result.archetype }}</p>
+                <p><strong>Location:</strong> {{ result.location }}</p>
+                <p><strong>Sub-location:</strong> {{ result.sublocation|default:"Not specified" }}</p>
+                <p><strong>Good Fit Occupations:</strong> {{ result.good_fit_occupations }}</p>
+                <p><strong>PDFs Saved to:</strong> {{ result.folder_path }}</p>
+            </div>
+
+            <!-- Resume 1 Details -->
+            <div style="background: #f0f8f0; padding: 15px; border: 1px solid #ddd; border-radius: 4px; margin-bottom: 10px;">
+                <h3>Resume 1:</h3>
+                <p><strong>Name:</strong> {{ result.resume1.full_name }}</p>
+                <p><strong>Email:</strong> {{ result.resume1.email }}</p>
+                <p><strong>Phone:</strong> {{ result.resume1.phone }}</p>
+                <p><strong>Address:</strong> {{ result.resume1.address }}</p>
+                <p><strong>Skills:</strong> {{ result.resume1.skills }}</p>
+            </div>
+
+            <!-- Resume 2 Details -->
+            <div style="background: #f0f0f8; padding: 15px; border: 1px solid #ddd; border-radius: 4px;">
+                <h3>Resume 2:</h3>
+                <p><strong>Name:</strong> {{ result.resume2.full_name }}</p>
+                <p><strong>Email:</strong> {{ result.resume2.email }}</p>
+                <p><strong>Phone:</strong> {{ result.resume2.phone }}</p>
+                <p><strong>Address:</strong> {{ result.resume2.address }}</p>
+                <p><strong>Skills:</strong> {{ result.resume2.skills }}</p>
+            </div>
+
+            <!-- Add Job Application Button -->
+            <div style="margin-top: 20px; margin-bottom: 6px;">
+                <a href="{% url 'admin:audit_pairapplication_add' %}?pair={{ result.pair_db_id }}" class="button default" style="background:#417690;color:white;padding:10px 15px;font-weight:bold;">
+                    ➕ Add Job Application for this Pair
+                </a>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+<script type="text/javascript">
+// Native JavaScript implementation - no jQuery dependency
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('DOM loaded, initializing dropdowns with native JavaScript');
+
+    function loadSublocations() {
+        var locationField = document.getElementById('id_location');
+        var sublocationField = document.getElementById('id_sublocation');
+        var locationValue = locationField ? locationField.value : '';
+
+        console.log('loadSublocations called with location:', locationValue);
+
+        if (!sublocationField) {
+            console.log('Sublocation field not found');
+            return;
+        }
+
+        if (!locationValue) {
+            sublocationField.innerHTML = '<option value="">Select sublocation (optional)</option>';
+            var formRow = sublocationField.closest('.form-row');
+            if (formRow) formRow.style.display = 'block';
+            console.log('No location selected, clearing sublocation field');
+            return;
+        }
+
+        console.log('Making fetch request to /audit/ajax/sublocations/ for location:', locationValue);
+
+        fetch('/audit/ajax/sublocations/?location=' + encodeURIComponent(locationValue))
+            .then(function(response) {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok: ' + response.status);
+                }
+                return response.json();
+            })
+            .then(function(data) {
+                console.log('AJAX response received:', data);
+                sublocationField.innerHTML = '<option value="">Select sublocation (optional)</option>';
+
+                if (data.sublocations && data.sublocations.length > 0) {
+                    console.log('Found', data.sublocations.length, 'sublocations');
+
+                    if (data.sublocations.length > 1) {
+                        var formRow = sublocationField.closest('.form-row');
+                        if (formRow) formRow.style.display = 'block';
+
+                        data.sublocations.forEach(function(sublocation) {
+                            console.log('Adding sublocation option:', sublocation);
+                            var option = document.createElement('option');
+                            option.value = sublocation.value;
+                            option.textContent = sublocation.label;
+                            sublocationField.appendChild(option);
+                        });
+                    } else {
+                        console.log('Single sublocation, hiding dropdown and auto-selecting');
+                        var formRow = sublocationField.closest('.form-row');
+                        if (formRow) formRow.style.display = 'none';
+                        sublocationField.value = data.sublocations[0].value;
+                    }
+                } else {
+                    console.log('No sublocations found, hiding dropdown');
+                    var formRow = sublocationField.closest('.form-row');
+                    if (formRow) formRow.style.display = 'none';
+                }
+            })
+            .catch(function(error) {
+                console.error('Error loading sublocations:', error);
+            });
+    }
+
+    function loadArchetypes() {
+        var occupationField = document.getElementById('id_occupation');
+        var archetypeField = document.getElementById('id_archetype');
+        var occupationValue = occupationField ? occupationField.value : '';
+
+        console.log('loadArchetypes called with occupation:', occupationValue);
+
+        if (!archetypeField) {
+            console.log('Archetype field not found');
+            return;
+        }
+
+        if (!occupationValue) {
+            archetypeField.innerHTML = '<option value="">Select archetype</option>';
+            console.log('No occupation selected, clearing archetype field');
+            return;
+        }
+
+        console.log('Making fetch request to /audit/ajax/archetypes/ for occupation:', occupationValue);
+
+        fetch('/audit/ajax/archetypes/?occupation=' + encodeURIComponent(occupationValue))
+            .then(function(response) {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok: ' + response.status);
+                }
+                return response.json();
+            })
+            .then(function(data) {
+                console.log('AJAX response received:', data);
+                archetypeField.innerHTML = '<option value="">Select archetype</option>';
+
+                if (data.archetypes && data.archetypes.length > 0) {
+                    console.log('Found', data.archetypes.length, 'archetypes');
+
+                    data.archetypes.forEach(function(archetype) {
+                        console.log('Adding archetype option:', archetype);
+                        var option = document.createElement('option');
+                        option.value = archetype.value;
+                        option.textContent = archetype.label;
+                        archetypeField.appendChild(option);
+                    });
+                } else {
+                    console.log('No archetypes found in response');
+                }
+            })
+            .catch(function(error) {
+                console.error('Error loading archetypes:', error);
+            });
+    }
+
+    // Attach event handlers
+    var locationField = document.getElementById('id_location');
+    var occupationField = document.getElementById('id_occupation');
+
+    if (locationField) {
+        locationField.addEventListener('change', loadSublocations);
+        console.log('Location change handler attached');
+    } else {
+        console.log('Location field not found');
+    }
+
+    if (occupationField) {
+        occupationField.addEventListener('change', loadArchetypes);
+        console.log('Occupation change handler attached');
+    } else {
+        console.log('Occupation field not found');
+    }
+
+    console.log('Native JavaScript initialization complete');
+});
+</script>
+{% endblock %}

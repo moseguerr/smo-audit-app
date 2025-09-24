@@ -1,25 +1,65 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2575.6">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; -webkit-text-stroke: #000000}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; -webkit-text-stroke: #000000; min-height: 14.0px}
-    span.s1 {font-kerning: none}
-  </style>
-</head>
-<body>
-<p class="p1"><span class="s1">{% extends "admin/change_form.html" %}</span></p>
-<p class="p1"><span class="s1">{% load i18n %}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">{# This block renders AFTER all inlines, so it appears under PROFILES #}</span></p>
-<p class="p1"><span class="s1">{% block after_related_objects %}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>{{ block.super }}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>{{ add_application_html|safe }}</span></p>
-<p class="p1"><span class="s1">{% endblock %}</span></p>
-</body>
-</html>
+{% extends "admin/change_form.html" %}
+{% load i18n admin_urls static admin_modify %}
+
+{# This template provides a comprehensive display for viewing existing pairs #}
+{# It matches the formatting and information shown in the generation results #}
+
+{% block object-tools-items %}
+    {{ block.super }}
+{% endblock %}
+
+{% block field_sets %}
+    {% if original %}
+    {# Display comprehensive pair information matching generation results format #}
+    <div class="module aligned" style="margin-top: 20px;">
+        <h2>Pair Details</h2>
+
+        <!-- Pair Information (shared) -->
+        <div style="background: #f8f8f8; padding: 15px; border: 1px solid #ddd; border-radius: 4px; margin-bottom: 15px;">
+            <p><strong>Pair ID:</strong> {{ original.pair_id }}</p>
+            <p><strong>Occupation:</strong> {{ original.occupation }}</p>
+            <p><strong>Archetype:</strong> {{ archetype_display|default:"Not specified" }}</p>
+            <p><strong>Location:</strong> {{ original.location|default:"Not specified" }}</p>
+            <p><strong>Sub-location:</strong> {{ sublocation_display|default:"Not specified" }}</p>
+            <p><strong>Good Fit Occupations:</strong> {{ original.good_fit_occupations|default:"Not specified" }}</p>
+            <p><strong>PDFs Saved to:</strong> {{ folder_path }}</p>
+        </div>
+
+        {% with profiles=original.profiles.all %}
+            {% if profiles %}
+                <!-- Resume 1 Details -->
+                <div style="background: #f0f8f0; padding: 15px; border: 1px solid #ddd; border-radius: 4px; margin-bottom: 10px;">
+                    <h3>Resume 1:</h3>
+                    <p><strong>Name:</strong> {{ profiles.0.full_name }}</p>
+                    <p><strong>Email:</strong> {{ profiles.0.email }}</p>
+                    <p><strong>Phone:</strong> {{ profiles.0.phone }}</p>
+                    <p><strong>Address:</strong> {{ profiles.0.address }}</p>
+                    <p><strong>Skills:</strong> {{ profiles.0.expertise }}</p>
+                </div>
+
+                {% if profiles.1 %}
+                    <!-- Resume 2 Details -->
+                    <div style="background: #f0f0f8; padding: 15px; border: 1px solid #ddd; border-radius: 4px;">
+                        <h3>Resume 2:</h3>
+                        <p><strong>Name:</strong> {{ profiles.1.full_name }}</p>
+                        <p><strong>Email:</strong> {{ profiles.1.email }}</p>
+                        <p><strong>Phone:</strong> {{ profiles.1.phone }}</p>
+                        <p><strong>Address:</strong> {{ profiles.1.address }}</p>
+                        <p><strong>Skills:</strong> {{ profiles.1.expertise }}</p>
+                    </div>
+                {% endif %}
+            {% else %}
+                <div style="background: #fff3cd; padding: 15px; border: 1px solid #ddd; border-radius: 4px; margin-bottom: 10px;">
+                    <p><em>No profile information available for this pair.</em></p>
+                </div>
+            {% endif %}
+        {% endwith %}
+    </div>
+    {% endif %}
+{% endblock %}
+
+{# This block renders AFTER all inlines, so it appears under PROFILES #}
+{% block after_related_objects %}
+    {{ block.super }}
+    {{ add_application_html|safe }}
+{% endblock %}

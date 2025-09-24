@@ -1,0 +1,13 @@
+{% extends "admin/change_list.html" %}
+{% load i18n admin_urls %}
+
+{% block object-tools %}
+    {% if show_generate_button %}
+        <div style="margin-bottom: 10px;">
+            <a href="{% url 'admin:audit_pair_changelist' %}" class="button addlink" style="background: #417690; color: white; padding: 10px 15px; font-weight: bold;">
+                ➕ Generate New Pair
+            </a>
+        </div>
+    {% endif %}
+    {{ block.super }}
+{% endblock %}

@@ -1,0 +1,47 @@
+pair_id,resume_idx,template_name,first_name,first_name_id,last_name,last_name_id,full_name,race_signal,gender_signal,phone,phone_id,address,address_id,email,current_employer_type,current_employer_id,current_employer_name,current_job_title,current_job_id,current_start,current_end,current_bullets,previous_employer_type,previous_employer_id,previous_employer_name,previous_job_title,previous_job_id,previous_start,previous_end,previous_bullets,college_activity_type,college_activity_description,college_name,college_id,college_major,college_major_id,college_gpa,grad_gap,college_start,college_end,skills,summary,good_fit_occupations,occupation
+ysfc1x,1,template_3.txt,Darius,fn:Black:Male:18,Jefferson,ln:Black:1,Darius Jefferson,Black,Male,202-555-0148,ph:0,"789 Pine Road, Boston, MA 02108",addr3,darius.jefferson23@aol.com,For Profit,FP3,Silverline Analytics,Job Title 1,CUR_1,Jun-21,Present,Bullet 1 • Bullet 2 • Bullet 3,For Profit,FP2,Northstar Logistics,Job Title C,PREV_3,Aug-19,May-21,Bullet 1 • Bullet 2 • Bullet 3,activist,"Volunteer, Climate March Planning Committee",Northeastern Institute of Technology,c3,Communications,m2,3.4,6,2015,2019,Excel; Payroll systems; Data analysis,Detail-oriented analyst with experience managing payroll and financial data.,"Digital Marketing Specialist: Ideal for roles focusing on creating and implementing communication plans and digital promotions.
+Content Marketing Manager: Proficient in content creation and web content optimization.
+Social Media Marketing Coordinator: Skilled in managing social media campaigns and database interactions.
+Email Marketing Strategist: Experienced in orchestrating targeted digital promotions and email campaigns.
+Marketing Data Analyst: Adept at data analysis and reporting, suitable for roles requiring insights-driven marketing strategies.",communications
+ysfc1x,2,template_2.txt,Rasheed,fn:Black:Male:11,Booker,ln:Black:2,Rasheed Booker,Black,Male,312-555-0193,ph:1,"123 Main Street, Chicago, IL 60601",addr1,rasheed.booker23@icloud.com,SMO,SMO1,Climate Action Now,Job Title 2,CUR_2,Jun-21,Present,Bullet 1 • Bullet 2 • Bullet 3,SMO,SMO2,Justice For All,Job Title B,PREV_2,Aug-19,May-21,Bullet 1 • Bullet 2 • Bullet 3,activist,"Member, Environmental Action Club",Midwest State University,c1,Environmental Studies,m3,3.2,6,2015,2019,Excel; Payroll systems; Data analysis,Results-driven professional with strong expertise in Excel and business systems.,"Digital Marketing Specialist: Ideal for roles focusing on creating and implementing communication plans and digital promotions.
+Content Marketing Manager: Proficient in content creation and web content optimization.
+Social Media Marketing Coordinator: Skilled in managing social media campaigns and database interactions.
+Email Marketing Strategist: Experienced in orchestrating targeted digital promotions and email campaigns.
+Marketing Data Analyst: Adept at data analysis and reporting, suitable for roles requiring insights-driven marketing strategies.",communications
+rxl385,1,template_7.txt,Terrel,fn:Black:Male:9,Booker,ln:Black:2,Terrel Booker,Black,Male,312-555-0193,ph:1,"789 Pine Road, Boston, MA 02108",addr3,terrel.booker23@icloud.com,For Profit,FP4,Acme Manufacturing,Job Title 3,CUR_3,Jun-21,Present,Bullet 1 • Bullet 2 • Bullet 3,For Profit,FP1,Orbit Energy,Job Title B,PREV_2,Aug-19,May-21,Bullet 1 • Bullet 2 • Bullet 3,activist,"Organizer, Social Justice Week",Northeastern Institute of Technology,c3,Communications,m2,3.8,6,2015,2019,Excel; Payroll systems; Data analysis,Adaptable team player with skills in data analysis and process optimization.,"Payroll Specialist: Skilled in processing employee payroll, ensuring compliance with tax regulations, and maintaining accurate records.
+
+Compensation and Benefits Analyst: Adept at managing payroll data while supporting broader compensation and benefits functions.
+
+HR Operations Coordinator: Suitable for roles integrating payroll tasks with HR processes.
+
+Payroll Systems Administrator: Experienced in handling payroll software systems and troubleshooting payroll-related issues.
+
+Accounting Assistant (Payroll Focus): Capable of supporting accounting functions with payroll reconciliation and reporting.",payroll
+rxl385,2,template_2.txt,Wendell,fn:Black:Male:26,Jackson,ln:Black:4,Wendell Jackson,Black,Male,202-555-0148,ph:0,"456 Oak Avenue, Washington, DC 20001",addr2,wendell_jackson@hotmail.com,SMO,SMO3,Green Future Alliance,Job Title 2,CUR_2,Jun-21,Present,Bullet 1 • Bullet 2 • Bullet 3,SMO,SMO4,Health Equity Network,Job Title A,PREV_1,Aug-19,May-21,Bullet 1 • Bullet 2 • Bullet 3,activist,"Volunteer, Climate March Planning Committee",Midwest State University,c1,Environmental Studies,m3,3.5,6,2015,2019,Excel; Payroll systems; Data analysis,Results-driven professional with strong expertise in Excel and business systems.,"Payroll Specialist: Skilled in processing employee payroll, ensuring compliance with tax regulations, and maintaining accurate records.
+
+Compensation and Benefits Analyst: Adept at managing payroll data while supporting broader compensation and benefits functions.
+
+HR Operations Coordinator: Suitable for roles integrating payroll tasks with HR processes.
+
+Payroll Systems Administrator: Experienced in handling payroll software systems and troubleshooting payroll-related issues.
+
+Accounting Assistant (Payroll Focus): Capable of supporting accounting functions with payroll reconciliation and reporting.",payroll
+j072zr,1,template_4.txt,Sarah,fn:White:Female:8,Meyer,ln:White:1,Sarah Meyer,White,Female,202-555-0148,ph:0,"456 Oak Avenue, Washington, DC 20001",addr2,sarahmeyer1@outlook.com,SMO,SMO4,Health Equity Network,Job Title 1,CUR_1,Jan-22,Present,Bullet 1 • Bullet 2 • Bullet 3,SMO,SMO1,Climate Action Now,Job Title B,PREV_2,May-19,Dec-21,Bullet 1 • Bullet 2 • Bullet 3,neutral,"Captain, Intramural Soccer Team",Western College,c2,Communications,m2,3.2,6,2015,2019,Excel; Payroll systems; Data analysis,Detail-oriented analyst with experience managing payroll and financial data.,"Senior Project Coordinator: Experienced in supporting large projects and ensuring timely deliverables.
+
+Product Implementation Manager: Skilled in overseeing product rollouts and managing cross-departmental tasks.
+
+Business Operations Manager: Well-suited for roles aligning project outcomes with business strategies.
+
+Change Management Specialist: Adept at guiding teams through organizational transitions.
+
+Client Services Project Manager: Effective in managing client-facing projects and ensuring satisfaction",project manager
+j072zr,2,template_2.txt,Susan,fn:White:Female:16,Becker,ln:White:0,Susan Becker,White,Female,312-555-0193,ph:1,"123 Main Street, Chicago, IL 60601",addr1,susan_becker@msn.com,For Profit,FP3,Silverline Analytics,Job Title 2,CUR_2,Jan-22,Present,Bullet 1 • Bullet 2 • Bullet 3,For Profit,FP2,Northstar Logistics,Job Title A,PREV_1,May-19,Dec-21,Bullet 1 • Bullet 2 • Bullet 3,neutral,"Volunteer, Campus Tutoring Program",Northeastern Institute of Technology,c3,Business Administration,m1,3.4,6,2015,2019,Excel; Payroll systems; Data analysis,Results-driven professional with strong expertise in Excel and business systems.,"Senior Project Coordinator: Experienced in supporting large projects and ensuring timely deliverables.
+
+Product Implementation Manager: Skilled in overseeing product rollouts and managing cross-departmental tasks.
+
+Business Operations Manager: Well-suited for roles aligning project outcomes with business strategies.
+
+Change Management Specialist: Adept at guiding teams through organizational transitions.
+
+Client Services Project Manager: Effective in managing client-facing projects and ensuring satisfaction.",project manager

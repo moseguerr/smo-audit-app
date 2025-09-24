@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2575.6">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  </style>
+</head>
+<body>
+<p class="p1">{% extends "admin/change_form.html" %}</p>
+<p class="p2"><br></p>
+<p class="p1">{% block field_sets %}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{{ block.super }}</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.addEventListener('DOMContentLoaded', function() {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Add check button next to display_name field</p>
+<p class="p1"><span class="Apple-converted-space">        </span>var displayNameField = document.getElementById('id_display_name');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (displayNameField) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>var checkButton = document.createElement('button');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>checkButton.type = 'button';</p>
+<p class="p1"><span class="Apple-converted-space">            </span>checkButton.className = 'button';</p>
+<p class="p1"><span class="Apple-converted-space">            </span>checkButton.textContent = 'Check';</p>
+<p class="p1"><span class="Apple-converted-space">            </span>checkButton.style.marginLeft = '10px';</p>
+<p class="p1"><span class="Apple-converted-space">            </span>checkButton.id = 'check-employer-btn';</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Insert button after the input field</p>
+<p class="p1"><span class="Apple-converted-space">            </span>displayNameField.parentNode.insertBefore(checkButton, displayNameField.nextSibling);</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Add result message area</p>
+<p class="p1"><span class="Apple-converted-space">            </span>var messageDiv = document.createElement('div');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>messageDiv.id = 'check-result';</p>
+<p class="p1"><span class="Apple-converted-space">            </span>messageDiv.style.marginTop = '5px';</p>
+<p class="p1"><span class="Apple-converted-space">            </span>messageDiv.style.fontWeight = 'bold';</p>
+<p class="p1"><span class="Apple-converted-space">            </span>checkButton.parentNode.insertBefore(messageDiv, checkButton.nextSibling);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>});</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/script&gt;</p>
+<p class="p1">{% endblock %}</p>
+</body>
+</html>
